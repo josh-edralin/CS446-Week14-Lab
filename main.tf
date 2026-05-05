@@ -4,7 +4,10 @@ terraform {
   }
 }
 
-provider "google" { project = var.project  region = "us-central1" }
+provider "google" {
+  project = var.project
+  region  = "us-central1"
+}
 
 resource "google_artifact_registry_repository" "labs" {
   location      = "us-central1"
@@ -17,7 +20,7 @@ resource "google_cloudbuild_trigger" "main" {
   github {
     owner = var.gh_owner
     name  = var.gh_repo
-    push  { branch = "^main$" }
+    push { branch = "^main$" }
   }
   filename = "cloudbuild.yaml"
 }
